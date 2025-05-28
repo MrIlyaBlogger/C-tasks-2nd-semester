@@ -1,33 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Определение структуры узла односвязного списка
+// Каждый узел содержит данные и указатель на следующий элемент
 typedef struct Node {
-    int data;
-    struct Node* next;
+    int data;              // Значение, хранящееся в узле
+    struct Node* next;     // Указатель на следующий узел
 } List;
 
+// Функция для вычисления размера (длины) списка
 int size(List* head) {
-    int s = 0;
+    int s = 0;             // Счётчик элементов
     if (head == NULL) {
-        return 0;
+        return 0;         // Если список пуст, возвращаем 0
     }
     while (head != NULL) {
-        s++;
-        head = head->next;
+        s++;              // Увеличиваем счётчик
+        head = head->next;// Переходим к следующему элементу
     }
-    return s;
+    return s;             // Возвращаем размер списка
 }
 
+// Функция для сравнения двух списков на равенство
+// Возвращает true, если списки одинаковой длины и все элементы совпадают
 bool compare(List *head1, List *head2) {
     if (size(head1) != size(head2)) {
-        return false;
+        return false;     // Если размеры разные — списки не равны
     }
     while (head1 != NULL) {
         if (head1->data != head2->data) {
-            return false;
+            return false; // Если найдено несовпадение — списки не равны
         }
-        head1 = head1->next;
-        head2 = head2->next;
+        head1 = head1->next; // Переходим к следующему элементу первого списка
+        head2 = head2->next; // Переходим к следующему элементу второго списка
     }
-    return true;
+    return true;             // Если все элементы совпали — списки равны
 }

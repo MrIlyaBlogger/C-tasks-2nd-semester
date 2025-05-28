@@ -1,20 +1,25 @@
 #include <stdio.h>
 
+// Определение структуры узла бинарного дерева
+// Каждый узел содержит ключ и указатели на левого и правого потомков
 typedef struct node {
-    int key;
-    struct node *left;
-    struct node *right;
+    int key;                  // Значение (ключ) в узле
+    struct node *left;        // Указатель на левого потомка
+    struct node *right;       // Указатель на правого потомка
 } tree;
 
+// Рекурсивная функция поиска всех узлов с заданным значением k
 void same(tree *root, int k) {
     if (root == NULL)
-        return;
+        return;              // Если дошли до пустого поддерева — возвращаемся
     if (root->key == k) {
-        printf("Repeat found: %d\n", root->key);
+        printf("Repeat found: %d\n", root->key); // Если нашли совпадение — выводим
     }
-    same(root->left, k);
-    same(root->right, k);
+    same(root->left, k);     // Рекурсивно ищем в левом поддереве
+    same(root->right, k);    // Рекурсивно ищем в правом поддереве
 }
+
+// Ниже - визуализация (на зачёте не пишем)
 
 int main() {
     // Создаём дерево:
@@ -23,20 +28,20 @@ int main() {
     //     3   7
     //    /   / \
     //   3   5   8
-    tree n1 = {3, NULL, NULL};
-    tree n2 = {3, &n1, NULL};
-    tree n3 = {5, NULL, NULL};
-    tree n4 = {8, NULL, NULL};
-    tree n5 = {7, &n3, &n4};
-    tree root = {5, &n2, &n5};
+    tree n1 = {3, NULL, NULL};         // Лист с ключом 3
+    tree n2 = {3, &n1, NULL};          // Узел с ключом 3, левый потомок — n1
+    tree n3 = {5, NULL, NULL};         // Лист с ключом 5
+    tree n4 = {8, NULL, NULL};         // Лист с ключом 8
+    tree n5 = {7, &n3, &n4};           // Узел с ключом 7, потомки — n3 и n4
+    tree root = {5, &n2, &n5};         // Корень дерева с ключом 5
 
     int k = 3;
     printf("Поиск всех узлов со значением %d:\n", k);
-    same(&root, k);
+    same(&root, k);                    // Поиск всех узлов со значением 3
 
     k = 5;
     printf("\nПоиск всех узлов со значением %d:\n", k);
-    same(&root, k);
+    same(&root, k);                    // Поиск всех узлов со значением 5
 
     return 0;
 }
