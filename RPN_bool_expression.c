@@ -18,10 +18,7 @@ int main() {
             b = stack_pop(&s);
 
             // Если оба операнда истинны, кладём 1, иначе сумму (0+1=1, 0+0=0)
-            if (a && b) 
-                stack_push(&s, a);
-            else 
-                stack_push(&s, a + b);
+            stack_push(&s, a || b);
         } else if (c == '*') {
             // Операция И (конъюнкция): снимаем два значения со стека
             a = stack_pop(&s); 
