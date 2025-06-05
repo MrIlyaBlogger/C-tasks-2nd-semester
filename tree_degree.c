@@ -23,21 +23,6 @@ void degree(Tree* root, int *count, int local) {
     degree(root->son, count, 0);
 }
 
-// Функция вычисления глубины дерева (максимальной длины пути от корня до листа)
-void tree_depth(Tree* root, int *depth, int local) {
-    if (root == NULL) {
-        return;
-    }
-    // Если текущая глубина больше найденного максимума — обновляем
-    if (local > *depth) {
-        *depth = local;
-    }
-    // Рекурсивно идём по сыну, увеличивая глубину
-    tree_depth(root->son, depth, local + 1);
-    // Рекурсивно идём по братьям, глубина не меняется
-    tree_depth(root->brother, depth, local);
-}
-
 //Ниже - визуализация (на зачёте не пишем)
 
 int main() {
